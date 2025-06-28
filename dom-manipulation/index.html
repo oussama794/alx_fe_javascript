@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Quote Generator</title>
   <style>
     body {
@@ -31,16 +31,17 @@
 </head>
 <body>
   <h1>Quote Generator</h1>
-
-  <div id="quoteDisplay">No quote yet.</div>
+  <div id="quoteDisplay"></div>
   <button id="newQuote">Show New Quote</button>
-  <button id="exportQuotes">Export Quotes (JSON)</button>
-  <input type="file" id="importFile" accept=".json" />
   <select id="categoryFilter">
     <option value="all">All Categories</option>
   </select>
 
+  <input type="file" id="importFile" accept=".json" />
+  <button id="exportQuotes">Export Quotes as JSON</button>
+  <button onclick="syncWithServer()">Manual Sync</button>
 
   <script src="script.js"></script>
 </body>
 </html>
+
