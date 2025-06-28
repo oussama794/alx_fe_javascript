@@ -105,13 +105,17 @@ function importFromJsonFile(event) {
 // ====== Sync with Fake Server ======
 
 function fetchQuotesFromServer() {
-  return new Promise(resolve => {
-    const simulatedServerQuotes = [
-      { text: "This is from the server.", category: "Server" }
-    ];
-    setTimeout(() => resolve(simulatedServerQuotes), 1000);
-  });
+  return fetch('https://jsonplaceholder.typicode.com/posts?_limit=5')
+    .then(res => res.json())
+    .then(data => {
+      return data.map(item => ({
+        text: item.title,
+        category: 'Server-' + item.userId
+      }));
+    })
+    .catch(() => []); 
 }
+
 
 function syncWithServer() {
   fetchQuotesFromServer().then(serverQuotes => {
